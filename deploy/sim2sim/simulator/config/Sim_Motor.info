@@ -1,0 +1,20 @@
+Motor_8115
+{
+loco_kp     50 ; range +-500
+loco_kd     0.5; range +-5
+stand_kp    100
+stand_kd    1
+passive_kp  0
+passive_kd  0
+Max_Torque  40
+Rs          0.1625
+Ls          0.000105
+Inverse_Kt_Out  1.8488
+Battery_Voltage 38
+flux_linkage 0.00147095
+velocity_mapping_k 4.2088154779383
+Gear_Inertial 0.0092
+Mapping_Para  0.24
+Gear_Ratio   9.75
+Npp          21
+}

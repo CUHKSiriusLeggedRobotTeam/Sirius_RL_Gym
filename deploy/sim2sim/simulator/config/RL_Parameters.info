@@ -1,0 +1,38 @@
+RL_Walk_Parameters
+{
+  mode_name                     normal_walk
+  model_path                    ../models/policy_1.onnx
+  kp_joint                      40
+  kd_joint                      2
+  vx_scale                      1.0
+  vy_scale                      0.3
+  vw_scale                      1.0
+  period                        0.8
+  gamepad_smooth_factor         0.99
+}
+
+RL_Walk_2_Parameters
+{
+  mode_name                     payload_walk
+  model_path                    ../models/policy_2.onnx
+  kp_joint                      40
+  kd_joint                      2
+  vx_scale                      0.8
+  vy_scale                      0.3
+  vw_scale                      0.8
+  period                        0.8
+  gamepad_smooth_factor         0.99
+}
+
+RL_Walk_3_Parameters
+{
+  mode_name                     stair_walk
+  model_path                    ../models/policy_3.onnx
+  kp_joint                      40
+  kd_joint                      2
+  vx_scale                      0.5
+  vy_scale                      0.3
+  vw_scale                      0.8
+  period                        0.8
+  gamepad_smooth_factor         0.99
+}

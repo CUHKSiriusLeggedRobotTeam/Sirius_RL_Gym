@@ -1,0 +1,119 @@
+State_Parameters
+{
+control_dt          0.002
+stand_up_time       3
+sit_down_time       3
+use_wbc             1
+}
+
+kp_stand_vec
+{
+(0,0) 80
+(1,0) 80
+(2,0) 80
+}
+
+kd_stand_vec
+{
+(0,0) 1
+(1,0) 1
+(2,0) 1
+}
+
+WBCTask_Variable
+{
+  verbose
+  {
+    [0] 1
+  }
+  kp_ori_task
+  {
+    [0] 250
+    [1] 550
+    [2] 30
+  }
+  kd_ori_task
+  {
+    [0] 15
+    [1] 15
+    [2] 15
+  }
+  kp_pos_task
+  {
+    [0] 350
+    [1] 150
+    [2] 150
+  }
+  kd_pos_task
+  {
+    [0] 15
+    [1] 15
+    [2] 15
+  }
+  kp_link_task
+  {
+    [0] 500
+    [1] 600
+    [2] 500
+  }
+  kd_link_task
+  {
+    [0] 54
+    [1] 54
+    [2] 54
+  }
+  kp_joint
+  {
+    [0] 5.0
+    [1] 20.0
+    [2] 5.0
+  }
+  kd_joint
+  {
+    [0] 1
+    [1] 1
+    [2] 1
+  }
+}
+
+LinkContactTask_Variable ;keep this
+{
+Max_Fz 2500.0
+mu     0.6
+}
+
+Linear_MPC_Q
+{
+  verbose ; paramters, used for printing or else
+  {
+    [0] 1
+  }
+  mpc_rpy
+  {
+    [0] 2.25 ;roll
+    [1] 5.25 ;pitch
+    [2] 10   ;yaw
+  }
+  mpc_p
+  {
+    [0] 1.25 ;x
+    [1] 3.25 ;y
+    [2] 50 ;z
+  }
+  mpc_omega
+  {
+    [0] 0
+    [1] 0
+    [2] 1.5
+  }
+  mpc_vel
+  {
+    [0] 1.5
+    [1] 1.5
+    [2] 0.2
+  }
+  mpc_alpha
+  {
+    [0] 1.6e-5
+  }
+}

@@ -1,0 +1,22 @@
+LinearKalmanFilter_1000 ; note this parameter is only for sim. If using 500hz, the parameters need tuning!
+{
+imu_process_noise_position     0.002 ; Q_p
+imu_process_noise_velocity     0.002 ; Q_v
+foot_process_noise_position    0.002 ; Q_f
+foot_sensor_noise_position     0.00001 ; R
+foot_sensor_noise_velocity     0.00001
+foot_height_sensor_noise       0.00001
+control_dt                     0.001
+}
+
+LinearKalmanFilter_500 ; note this parameter is only for sim. If using 500hz, the parameters need tuning!
+{
+imu_process_noise_position     0.02 ; Q_p
+imu_process_noise_velocity     0.02 ; Q_v
+foot_process_noise_position    0.05 ; Q_f
+foot_sensor_noise_position     0.01 ; R
+foot_sensor_noise_velocity     0.02
+foot_height_sensor_noise       0.01
+control_dt                     0.002
+}
+
