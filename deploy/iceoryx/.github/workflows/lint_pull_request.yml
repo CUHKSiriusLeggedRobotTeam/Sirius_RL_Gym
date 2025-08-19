@@ -1,0 +1,57 @@
+name: Code Linting on Pull-Requests
+
+on:
+  pull_request:
+    branches: [ main, release*, iox-* ]
+
+jobs:
+  clang-tidy-review:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install iceoryx dependencies and clang-tidy
+        uses: ./.github/actions/install-iceoryx-deps-and-clang
+
+      - name: Get git diff
+        id: changed_files
+        uses: Ana06/get-changed-files@v2.3.0
+      - name: diff scan, clang-tidy for all files which are in `.clang-tidy-diff-scans.txt`
+        run: ./tools/scripts/clang_tidy_check.sh scan_list .clang-tidy-diff-scans.txt "${{ steps.changed_files.outputs.added_modified }}"
+
+  check-for-todo:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: check for todos which are not linked to issues or violating the format @todo iox-#?
+        run: ./tools/ci/todo-verificator.sh
+
+  verify-links-in-markdown-documentation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Calculate lychee cache key
+        run: echo "LYCHEE_CACHE_KEY=cache-lychee-all-branches-$(date +'%G-%V')" >> "$GITHUB_ENV" # %G = year; %V = week number
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          save-always: true
+          path: .lycheecache
+          key: ${{ env.LYCHEE_CACHE_KEY }}
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.8.0
+        with:
+          fail: true
+          args: --cache --insecure --max-cache-age 7d --verbose --no-progress './**/*.md' --github-token ${{secrets.GITHUB_TOKEN}} --max-concurrency 1

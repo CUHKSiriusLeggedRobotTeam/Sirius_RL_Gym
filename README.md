@@ -73,10 +73,22 @@ We demonstrate a sim2sim environment based on [MuJoCo](https://github.com/google
 Denpendencies: 
 
 - ROS2
-- iceoryx: https://github.com/eclipse-iceoryx/iceoryx/tree/main
+- LCM: 
+```bash
+sudo apt install liblcm-dev
+```
+- iceoryx (v2.95.4): https://github.com/eclipse-iceoryx/iceoryx/tree/v2.95.4
 
 ```bash
-cd deploy && cd sim2sim
+# The source code is already included in this repository.
+cd deploy/iceoryx
+```
+For detailed installation instructions, please refer to the [installation guide](https://github.com/eclipse-iceoryx/iceoryx/blob/v2.95.4/doc/website/getting-started/installation.md).
+
+Then build:
+
+```bash
+cd deploy/sim2sim
 colcon build
 ```
 
@@ -84,10 +96,13 @@ colcon build
 
 ```bash
 # In current terminal
-cd sim2sim/scripts
+cd deploy/sim2sim/scripts
 bash ./launch_simulator.sh
+
 # Open another terminal
-cd sim2sim/scripts
+cd deploy/sim2sim
+source install/setup.bash
+cd scripts
 bash ./launch_ros2topic.sh
 ```
 
@@ -113,7 +128,7 @@ USER_INTERFACE_LOW > USER_INTERFACE_MIDDLE > USER_INTERFACE_HIGH
 
 ```bash
 # Note: for ROS2 topic communicate sucessfully, you may need to run policy as root.
-cd ros2_RL_controller
+cd deploy/ros2_RL_controller
 colcon build
 source install/setup.bash
 ros2 run RL_controller joystick
@@ -178,7 +193,7 @@ And the following operation is on robot dog:
 ### 3.3 Build
 ```bash
 # Please transfer the ros2_RL_controller folder to the robot dog via scp before proceeding.
-cd ros2_RL_controller
+cd deploy/ros2_RL_controller
 colcon build
 ```
 
@@ -243,4 +258,5 @@ This repository is built upon the support and contributions of the following ope
 - [legged\_gym](https://github.com/leggedrobotics/legged_gym)
 - [rsl\_rl](https://github.com/leggedrobotics/rsl_rl.git)
 - [mujoco](https://github.com/google-deepmind/mujoco.git)
+- [lcm](https://github.com/lcm-proj/lcm)
 - [iceoryx](https://github.com/eclipse-iceoryx/iceoryx/tree/main)
