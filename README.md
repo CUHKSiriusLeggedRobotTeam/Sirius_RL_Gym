@@ -25,6 +25,9 @@ This repo. has been tested on:
 - Ubuntu 22.04 LTS  
 - ROS 2 Humble
 
+## Docker
+To get started quickly, run this project in a Docker container. See [docker.md](./doc/docker.md) for details.
+
 
 ## Installation
 
